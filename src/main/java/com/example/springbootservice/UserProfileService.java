@@ -1,8 +1,7 @@
 package com.example.springbootservice;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +21,17 @@ public class UserProfileService {
     public User getUser(@PathVariable String account_number) {
         return users.get(1);
     }
+
+    @RequestMapping(value = "/sayHello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String sayHello() {
+        return "Hello";
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String addUser(@RequestBody User user) {
+        return "User "+user.getName() +" with account "+user.getAccountNumber() +" is added successfully.";
+    }
+
+
 
 }
